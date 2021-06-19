@@ -2,6 +2,7 @@
 import csv
 from pathlib import Path
 
+print("Check to make sure this change went through.")
 print("___________________________________________________")
 print()
 print("Part 1: Automate the Calculations.")
