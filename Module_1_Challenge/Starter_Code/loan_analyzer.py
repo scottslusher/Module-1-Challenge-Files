@@ -2,7 +2,6 @@
 import csv
 from pathlib import Path
 
-print("Check to make sure this change went through.")
 print("___________________________________________________")
 print()
 print("Part 1: Automate the Calculations.")
@@ -37,6 +36,7 @@ average_loan_cost = sum_of_loans / number_of_loans
 print(f"The number of loans is {number_of_loans}")
 print(f"The total of all loans is ${sum_of_loans:,}")
 print(f"The average of all loans is ${average_loan_cost:,}")
+print()
 print("___________________________________________________")
 print()
 
@@ -74,18 +74,18 @@ loan = {
 
 # @TODO: Use get() on the dictionary of additional information to extract the Future Value and Remaining Months on the loan.
 # Print each variable.
-future_value = loan.get("future_value")
-remaining_months = loan.get("remaining_months")
-print(f"Future value: ${future_value:,}")
-print(f"Remaining months: {remaining_months}")
+future_value_of_loan = loan.get("future_value")
+remaining_months_of_loan = loan.get("remaining_months")
+print(f"The future value of the loan is: ${future_value_of_loan:,}")
+print(f"There are {remaining_months_of_loan} months remaining on the loan.")
 
 # @TODO: Use the formula for Present Value to calculate a "fair value" of the loan.
 # Use a minimum required return of 20% as the discount rate.
 #   You'll want to use the **monthly** version of the present value formula.
 #   HINT: Present Value = Future Value / (1 + Discount_Rate/12) ** remaining_months
-discount_rate = 0.20
-fair_value = future_value / (1 + discount_rate/12) ** remaining_months
-print(f"Fair Value is ${round(fair_value,2)}")
+discount_rate_of_loan = 0.20
+fair_value_of_loan = future_value_of_loan / (1 + discount_rate_of_loan/12) ** remaining_months_of_loan
+print(f"The Fair Value of the loan is ${round(fair_value_of_loan,2)}")
 
 
 # If Present Value represents what the loan is really worth, does it make sense to buy the loan at its cost?
@@ -94,7 +94,7 @@ print(f"Fair Value is ${round(fair_value,2)}")
 #    Else, the present value of the loan is less than the loan cost, then print a message that says that the loan is too expensive and not worth the price.
 loan_price = loan.get("loan_price")
 
-if fair_value >= loan_price:
+if fair_value_of_loan >= loan_price:
     print("The loan is worth at least the cost to buy it.")
 else:
     print("The loan is too expensive and not worth the price.")
@@ -127,18 +127,18 @@ new_loan = {
 # @TODO: Define a new function that will be used to calculate present value.
 #    This function should include parameters for `future_value`, `remaining_months`, and the `annual_discount_rate`
 #    The function should return the `present_value` for the loan.
-def present_value(future_value, remaining_months, annual_discount_rate):
-    present_value = future_value / (1 + discount_rate/12) ** remaining_months
-    return present_value
+def present_value_new_loan(future_value, remaining_months, annual_discount_rate):
+    present_value_new_loan = future_value_new_loan / (1 + discount_rate_new_loan/12) ** remaining_months_new_loan
+    return present_value_new_loan
 
 
 # @TODO: Use the function to calculate the present value of the new loan given below.
 #    Use an `annual_discount_rate` of 0.2 for this new loan calculation.
-future_value = new_loan.get("future_value")
-discount_rate = 0.20
-remaining_months = new_loan.get("remaining_months")
+future_value_new_loan = new_loan.get("future_value")
+discount_rate_new_loan = 0.20
+remaining_months_new_loan = new_loan.get("remaining_months")
 
-print(f"The present value of the loan is: ${round(present_value(future_value, remaining_months, discount_rate),2)}")
+print(f"The present value of the new loan is: ${round(present_value_new_loan(future_value_new_loan, remaining_months_new_loan, discount_rate_new_loan),2)}")
 
 print("___________________________________________________")
 print()
@@ -191,7 +191,7 @@ for price_of_loan in loans:
         inexpensive_loans.append(price_of_loan)
    
 # @TODO: Print the `inexpensive_loans` list
-print(f"Inexpensive loans: {inexpensive_loans}")
+print(f"Here is the list of Inexpensive loans: {inexpensive_loans}")
 print("___________________________________________________")
 print()
 
@@ -224,4 +224,4 @@ with open(output_path, 'w', newline='') as csvfile:
     csvwriter.writerow(header)
     for row in inexpensive_loans:
         csvwriter.writerow(row.values())
-print("Writing the data to a CSV file...")
+print("Writing the data to a CSV file - inexpensive_loans.csv")
